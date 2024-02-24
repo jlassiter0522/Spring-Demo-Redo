@@ -1,5 +1,10 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.uitil;
+import java.lang.reflect.ParameterizedType;
+
 import com.example.demo.domain.NASAParam;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,5 +22,11 @@ public class NASAController {
         NASAParam result = nasaTemp.getForObject("https://api.nasa.gov/planetary/apod?api_key=HrgUnKEFOtxVlQkjXZvMtLyNfSnstgpnsLHcd83N&date=" + date, NASAParam.class);
         return result;
     }
+    @GetMapping("/count")
+        public List<NASAParam> nasaCount(@RequestParam (value ="count", defaultValue = "") String count){
+            RestTemplate nasaCount = new RestTemplate();
+            List<NASAParam> countResult = nasaCount.getForObject("https://api.nasa.gov/planetary/apod?api_key=HrgUnKEFOtxVlQkjXZvMtLyNfSnstgpnsLHcd83N&count=" + count, ParameterizedType <List<NASAParm> > );
+            return countResult;
+        }
 
 }
