@@ -4,7 +4,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class NASAParam {
+public class NasaApiResponse {
     private String copyright;
     private String date;
     private String explanation;
