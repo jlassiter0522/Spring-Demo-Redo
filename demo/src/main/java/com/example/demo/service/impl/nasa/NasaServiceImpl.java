@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 public class NasaServiceImpl implements NasaService {
 
-    private final String NASA_API = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY";
+    private final String NASA_API = "https://api.nasa.gov/planetary/apod?api_key=HrgUnKEFOtxVlQkjXZvMtLyNfSnstgpnsLHcd83N";
 
     @Override
     public NasaApiResponse getNasaSingle(String date, String thumbs) {
