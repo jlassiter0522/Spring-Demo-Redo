@@ -43,5 +43,6 @@ export class App extends Component{
     }
 }
 
-ReactDom.render()
+ReactDom.render(<App />, document.querySelector("#app"));
+
     
