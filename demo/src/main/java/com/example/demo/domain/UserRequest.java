@@ -9,9 +9,7 @@ import lombok.Setter;
 public class UserRequest {
 
     //creating a validator
-    @nonNull
     
-
     private String firstName;
     private String lastName;
     private String phone;
