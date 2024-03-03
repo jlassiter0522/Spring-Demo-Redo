@@ -1,4 +1,4 @@
-package com.example.demo.service.nasa.impl.nasa;
+package com.example.demo.service.impl.nasa;
 
 import com.example.demo.domain.NasaApiResponse;
 import com.example.demo.service.nasa.NasaService;
