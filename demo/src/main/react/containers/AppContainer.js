@@ -1,10 +1,15 @@
-import React from 'react'
-const AppContainer = () => {
+import React, {useEffect, useState} from 'react'
+const AppContainer = (props) => {
+    const {name, color, object, count, increment} = props
+    const [count2, setCount2] = useState(0)
+
     return(
         <>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
           <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">
+              {name} {count2}
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -14,10 +19,10 @@ const AppContainer = () => {
                   <a class="nav-link active" aria-current="page" href="#">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Features</a>
+                  <a class="nav-link" href="#" onClick={() => setCount2(count2 +1)}>{count2}</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Pricing</a>
+                  <a class="nav-link" href="#" onClick={() => increment }>{count}</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link disabled" aria-disabled="true">Disabled</a>
@@ -38,3 +43,23 @@ const AppContainer = () => {
       </>
     )
 }
+export default AppContainer
+    /*component did mount
+ useEffect(() =>{
+
+
+//  },[])
+// componentDidUpdate
+  useEffect(() =>{
+
+
+  },[count]) //or instead of props we can use specific veriable names
+
+  //componentWillUnmount
+  useEffect(() =>{
+    return function cleanUp(){
+
+    }
+
+  },)
+    */
