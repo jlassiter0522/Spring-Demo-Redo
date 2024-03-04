@@ -1,7 +1,23 @@
 import React, {useEffect, useState} from 'react'
+import axios from 'axios';
 const AppContainer = (props) => {
     const {name, color, object, count, increment} = props
     const [count2, setCount2] = useState(0)
+
+    useEffect(()=>{
+      axios.get('/xkcd/current')
+      .then(function (response) {
+        // handle success
+        console.log(response);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
+    },[])
+
+
+
 
     return(
         <>
