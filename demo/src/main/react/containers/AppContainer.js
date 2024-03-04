@@ -3,11 +3,11 @@ import axios from 'axios';
 const AppContainer = (props) => {
     const {name, color, object, count, increment} = props
     const [count2, setCount2] = useState(0)
-
+    const [xkcdCurrent, setXkcdCurrent] = useState({})
     useEffect(()=>{
       axios.get('/xkcd/current')
       .then(function (response) {
-        // handle success
+        setXkcdCurrent(response)
         console.log(response);
       })
       .catch(function (error) {
