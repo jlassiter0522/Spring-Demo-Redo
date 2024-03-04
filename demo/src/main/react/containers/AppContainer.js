@@ -5,6 +5,7 @@ const AppContainer = (props) => {
     const [count2, setCount2] = useState(0)
     const [xkcdCurrent, setXkcdCurrent] = useState({})
     const [xkcdPast, setXkcdPast] = useState(null)
+    const [userDefComicNum, setUserDefComicNum] = useState('')
     useEffect(()=>{
       axios.get('/xkcd/current')
       .then(function (response) {
@@ -24,7 +25,7 @@ const AppContainer = (props) => {
       const count = pastNum ? pastNum : Math.floor(Math.random() * defaultNum);
       axios.get(`/xkcd/past/${count}`)
       .then(function (response) {
-        setXkcdCurrent(response.data)
+        setXkcdPast(response.data)
         console.log(response);
       })
       .catch(function (error) {
@@ -67,17 +68,25 @@ const AppContainer = (props) => {
         <h1>Hello, Cole!</h1>
         <img src = {xkcdCurrent.img} alt={xkcdCurrent.alt ? xkcdCurrent.alt : "No xkcd image for today"} />
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Email address</label>
+          <label for="exampleFormControlInput1" class="form-label">Email address
           <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+          </label>
         </div>
         <div class="mb-3">
-          <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+          <label for="exampleFormControlTextarea1" class="form-label">Example textarea
           <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </label>
         </div>
-        { xkcdPast ? 
-          <img src = {xkcdPast.img} alt={xkcdPast.alt ? xkcdPast.alt : "No xkcd image for today"} /> : null
+        { xkcdPast && 
+          <img src = {xkcdPast.img} alt={xkcdPast.alt ? xkcdPast.alt : "No xkcd image for today"} />
         }
-        <button type="button" class="btn" onClick ={() => fetchPastComic()} >Get Random Comic</button>
+        <div>
+            <button type="button" class="btn" onClick={() => fetchPastComic()} >Get Random Comic</button>
+        </div>
+        <div>
+          <input type="text" value={userDefComicNum} onChange={(e) => setUserDefComicNum(e.target.value)} placeholder="Enter a comic number" />
+          <button type="button" class="btn" onClick={() => fetchPastComic(setUserDefComicNum)} >Get User Defined Comic</button>
+        </div>
       </>
     )
 }
