@@ -1,36 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
-const NasaDate = () => {
-    const [NasaDate, setNasaDate] = useState({})
-    const [userEnteredDate, setUserEntered] = useState("")
+const NasaCount = () => {
+    const [userEnteredNumb, setUserEnteredNum] = useState("")
     useEffect(() => {
-        axios.get('/Nasa/singlenasaimage')
+        const apiCall = "/Nasa/numbernasaimage?count="
+        const number = userEnteredNumb
+        const finalCall = apiCall + number
+        axios.get(finalCall)
             .then(function (response) {
-                setNasaDate(response.data)
-                console.log(response);
-            })
+                const item = response.data.items.map((item)=> {
+                    return{
+                        "copyright" : item.copyright,
+                        "date" : item.date,
+                        "explanation" : item.explanation,
+                        "hdrul" : item.hdurl,
+                        "media_type" : item.media_type,
+                        "service_version" : item.service_version,
+                        "title" : item.title,
+                        "url" : item.url
+                    }
+                })
+            }, [])
             .catch(function (error) {
                 // handle error
                 console.log(error);
             })
     }, [])
-    const fetchPastImage = (() => {
-        const apiCall = "/Nasa/singlenasaimage?date="
-        const userDate = userEnteredDate
-        const fullCall = apiCall + userDate
-        axios.get(fullCall)
-            .then(function (response) {
-                setUserEntered(response.data)
-                console.log(response);
-            })
-            .catch(function (error){
-                console.log(error);
-            })
-            
-        document.getElementById('DateID').value = userDate
-    })
-
 
 
 
@@ -53,10 +49,10 @@ const NasaDate = () => {
                     </div>
             </div>
             <div>
-                <input type="text" id="DateID" value={userEnteredDate} onChange={(e) => setUserEntered(e.target.value)} placeholder="Date in yyyy-mm-dd format" />
+                <input type="text" id="DateID" value={userEnteredNumb} onChange={(e) => setUserEnteredNum(e.target.value)} placeholder="Date in yyyy-mm-dd format" />
                 <button disabled={userEnteredDate ? false : true}type="button" class="btn btn-info" onClick={() => fetchPastImage()} >Get User  Comic</button>
             </div>
         </>
     )
 }
-export default NasaDate
+export default NasaCount

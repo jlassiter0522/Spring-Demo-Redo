@@ -24,10 +24,13 @@ const Nav = () => {
                 <a class = "nav-link" href="nasadate"> Nasa Date </a>
             </li>
             <li class="nav-item">
-                <a class = "nav-link" href="#">Nasa Count</a>
+                <a class = "nav-link" href="nasacount">Nasa Count</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pastxkcdcomic" >Past Comic</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="NasaDateRange" >NasaDateRange</a>
             </li>
             
             
