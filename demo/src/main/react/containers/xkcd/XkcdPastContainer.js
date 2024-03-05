@@ -39,7 +39,6 @@ const AppContainer = () => {
 
     return (
         <>
-            <Nav />
             <div>
                 <button type="button" class="btn btn-primary" onClick={() => fetchPastComic()} >Get Random Comic</button>
             </div>
@@ -54,7 +53,7 @@ const AppContainer = () => {
                 {xkcdPast.transcript}
             </p>
             <div>
-                {xkcdPast && xkcdPast.img &&
+                {xkcdPast &&
                     <img src={xkcdPast.img} alt={xkcdPast.alt ? xkcdPast.alt : "No xkcd image for today"} />
                 }
             </div>

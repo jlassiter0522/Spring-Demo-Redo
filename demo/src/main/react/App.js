@@ -9,20 +9,27 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path:"/",
-    element: <AppContainer></AppContainer>
+    element: <AppContainer></AppContainer>,
+    children: [
+      {
+        index: true,
+        element: <div> Empty Index</div>
+      },
+
+      {
+        path: "currentxkcdcomic",
+        element: <XkcdCurrentContainer></XkcdCurrentContainer>
+      },
+      {
+      path:"pastxkcdcomic",
+      element:<XkcdPastContainer />
+      },
+      {
+        path:"nasadate",
+        element: <NasaDate />
+      }
+    ]
   },
-  {
-    path: "/currentxkcdcomic",
-    element: <XkcdCurrentContainer></XkcdCurrentContainer>
-  },
-  {
-  path:"/pastxkcdcomic",
-  element:<XkcdPastContainer />
-  },
-  {
-    path:"/nasadate",
-    element: <NasaDate />
-  }
 ])
 
 ReactDom.createRoot(document.getElementById('app')).render(

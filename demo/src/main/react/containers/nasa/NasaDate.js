@@ -20,7 +20,6 @@ const AppContainer = () => {
 
     return (
         <>
-            <Nav />
             <div>
                 <h1>{NasaDate.title}</h1>
             </div>
@@ -29,7 +28,7 @@ const AppContainer = () => {
             </div>
 
             <div>
-                <img src={NasaDate.img} alt={NasaDate.alt ? NasaDate.alt : "No NASA image for today"} />
+                <img src={NasaDate.url} alt={NasaDate.alt ? NasaDate.alt : "No NASA image for today"} />
             </div>
             <div>
                 <p>

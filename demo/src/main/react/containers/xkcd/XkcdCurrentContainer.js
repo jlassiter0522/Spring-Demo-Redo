@@ -20,7 +20,7 @@ const AppContainer = () => {
 
     return (
         <>
-            <Nav />
+            
             <div>
                 <h1>{xkcdCurrent.title}</h1>
             </div>
