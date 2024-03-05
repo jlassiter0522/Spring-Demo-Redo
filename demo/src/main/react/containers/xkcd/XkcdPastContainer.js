@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
-const AppContainer = () => {
+const XkcdPastContainer = () => {
     const [xkcdCurrent, setXkcdCurrent] = useState({})
     const [xkcdPast, setXkcdPast] = useState({})
     const [userDefComicNum, setUserDefComicNum] = useState('')
@@ -60,4 +60,4 @@ const AppContainer = () => {
         </>
     )
 }
-export default AppContainer
+export default XkcdPastContainer

@@ -4,6 +4,7 @@ import AppContainer from "/containers/AppContainer"
 import XkcdCurrentContainer from "./containers/xkcd/XkcdCurrentContainer"
 import XkcdPastContainer from "./containers/xkcd/XkcdPastContainer"
 import NasaDate from "./containers/nasa/NasaDate"
+import XkcdArrayRespEx from "./containers/xkcd/XkcdArrayRespEx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path:"nasadate",
         element: <NasaDate />
+      },
+      {
+        path: "example",
+        element: <XkcdArrayRespEx></XkcdArrayRespEx>
       }
     ]
   },

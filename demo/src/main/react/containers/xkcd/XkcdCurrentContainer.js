@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
-const AppContainer = () => {
+const XkcdCurrentContainer = () => {
     const [xkcdCurrent, setXkcdCurrent] = useState({})
     useEffect(() => {
         axios.get('/xkcd/current')
@@ -39,4 +39,4 @@ const AppContainer = () => {
         </>
     )
 }
-export default AppContainer
+export default XkcdCurrentContainer
