@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
 const AppContainer = () => {
-    const [xkcdCurrent, setXkcdCurrent] = useState({})
+    const [NasaDate, setNasaDate] = useState({})
     useEffect(() => {
-        axios.get('/xkcd/current')
+        axios.get('/Nasa/singlenasaimage')
             .then(function (response) {
-                setXkcdCurrent(response.data)
+                setNasaDate(response.data)
                 console.log(response);
             })
             .catch(function (error) {
@@ -22,18 +22,18 @@ const AppContainer = () => {
         <>
             <Nav />
             <div>
-                <h1>{xkcdCurrent.title}</h1>
+                <h1>{NasaDate.title}</h1>
             </div>
             <div>
 
             </div>
 
             <div>
-                <img src={xkcdCurrent.img} alt={xkcdCurrent.alt ? xkcdCurrent.alt : "No xkcd image for today"} />
+                <img src={NasaDate.img} alt={NasaDate.alt ? NasaDate.alt : "No NASA image for today"} />
             </div>
             <div>
                 <p>
-                    {xkcdCurrent.transcript}
+                    {NasaDate.explanation}
                 </p>
             </div>
         </>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import Nav from './components/nav/Nav';
+import Nav from '../components/nav/Nav';
 const AppContainer = () => {
     const [xkcdCurrent, setXkcdCurrent] = useState({})
-    const [xkcdPast, setXkcdPast] = useState(null)
+    const [xkcdPast, setXkcdPast] = useState({})
     const [userDefComicNum, setUserDefComicNum] = useState('')
     useEffect(() => {
         axios.get('/xkcd/current')
@@ -25,7 +25,7 @@ const AppContainer = () => {
         const count = pastNum || userDefComicNum ? pastNum || userDefComicNum : Math.floor(Math.random() * defaultNum);
         axios.get(`/xkcd/past/${count}`)
             .then(function (response) {
-                setXkcdCurrent(response.data)
+                setXkcdPast(response.data)
                 console.log(response);
             })
             .catch(function (error) {
@@ -54,7 +54,7 @@ const AppContainer = () => {
                 {xkcdPast.transcript}
             </p>
             <div>
-                {xkcdPast &&
+                {xkcdPast && xkcdPast.img &&
                     <img src={xkcdPast.img} alt={xkcdPast.alt ? xkcdPast.alt : "No xkcd image for today"} />
                 }
             </div>

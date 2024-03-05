@@ -9,7 +9,7 @@ const Nav = () => {
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="/">
           Web Dev Example
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -18,14 +18,19 @@ const Nav = () => {
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="currentxkcdcomic">Current Comic</a>
             </li>
             <li class="nav-item">
-
+                <a class = "nav-link" href="nasadate"> Nasa Date </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" >Disabled</a>
+                <a class = "nav-link" href="#">Nasa Count</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pastxkcdcomic" >Past Comic</a>
+            </li>
+            
+            
           </ul>
         </div>
       </div>

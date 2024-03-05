@@ -1,7 +1,36 @@
 import React, {Component} from "react";
-import ReactDom from "react-dom";
+import ReactDom from "react-dom/client";
 import AppContainer from "/containers/AppContainer"
-export class App extends Component{
+import XkcdCurrentContainer from "./containers/xkcd/XkcdCurrentContainer"
+import XkcdPastContainer from "./containers/xkcd/XkcdPastContainer"
+import NasaDate from "./containers/nasa/NasaDate"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element: <AppContainer></AppContainer>
+  },
+  {
+    path: "/currentxkcdcomic",
+    element: <XkcdCurrentContainer></XkcdCurrentContainer>
+  },
+  {
+  path:"/pastxkcdcomic",
+  element:<XkcdPastContainer />
+  },
+  {
+    path:"/nasadate",
+    element: <NasaDate />
+  }
+])
+
+ReactDom.createRoot(document.getElementById('app')).render(
+  <React.StrictMode>
+      <RouterProvider router = {router} />
+  </React.StrictMode>
+)
+/*export class App extends Component{
     constructor(props){
       super(props)
       this.state = {
@@ -31,7 +60,7 @@ export class App extends Component{
 
 
 
-ReactDom.render(<App />, document.querySelector("#app"));
+
 
 // components can have props and states 
 //props -> passed down from parent
