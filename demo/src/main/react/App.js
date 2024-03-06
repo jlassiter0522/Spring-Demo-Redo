@@ -7,6 +7,7 @@ import NasaDate from "./containers/nasa/NasaDate"
 import XkcdArrayRespEx from "./containers/xkcd/XkcdArrayRespEx";
 import NasaCount from "./containers/nasa/NasaCount";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import NasaDateRange from "./containers/nasa/NasaDateRange";
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
       {
         path: "nasacount",
         element: <NasaCount />
+      },
+      {
+      path: "nasadaterange",
+      element: <NasaDateRange />
       }
     ]
   },

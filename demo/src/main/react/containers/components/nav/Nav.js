@@ -30,7 +30,7 @@ const Nav = () => {
               <a class="nav-link" href="pastxkcdcomic" >Past Comic</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="NasaDateRange" >NasaDateRange</a>
+              <a class="nav-link" href="nasadaterange" >NasaDateRange</a>
             </li>
             
             
