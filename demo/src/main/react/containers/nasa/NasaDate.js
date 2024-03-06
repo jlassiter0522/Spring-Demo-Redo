@@ -54,7 +54,7 @@ const NasaDate = () => {
             </div>
             <div>
                 <input type="text" id="DateID" value={userEnteredDate} onChange={(e) => setUserEntered(e.target.value)} placeholder="Date in yyyy-mm-dd format" />
-                <button disabled={userEnteredDate ? false : true}type="button" class="btn btn-info" onClick={() => fetchPastImage()} >Get User  Comic</button>
+                <button disabled={userEnteredDate ? false : true}type="button" class="btn btn-info" onClick={() => fetchPastImage()} >Get Image</button>
             </div>
         </>
     )

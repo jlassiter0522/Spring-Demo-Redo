@@ -2,55 +2,49 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
 const NasaCount = () => {
-    const [userEnteredNumb, setUserEnteredNum] = useState("")
-    useEffect(() => {
+    const [userEnteredNumb, setUserEnteredNum] = useState('')
+    const [apiArray, setApiArray] = useState([])
+    const wholeCode = ""
+    const fetchCount = (() => {
+        const newNum = document.getElementById("number").value;
+        console.log(userEnteredNumb)
         const apiCall = "/Nasa/numbernasaimage?count="
-        const number = userEnteredNumb
+        const allCode = ""
+        const number = newNum
         const finalCall = apiCall + number
         axios.get(finalCall)
             .then(function (response) {
-                const item = response.data.items.map((item)=> {
-                    return{
-                        "copyright" : item.copyright,
-                        "date" : item.date,
-                        "explanation" : item.explanation,
-                        "hdrul" : item.hdurl,
-                        "media_type" : item.media_type,
-                        "service_version" : item.service_version,
-                        "title" : item.title,
-                        "url" : item.url
-                    }
-                })
-            }, [])
+                setApiArray(response.data)
+                console.log(response);
+                allCode += "test"
+                console.log("test");
+
+            })
             .catch(function (error) {
                 // handle error
                 console.log(error);
             })
-    }, [])
-
-
-
+    })
     return (
+
         <>
-            <div class="card" style={{"width" : "18rem"}}>
-                <img src={NasaDate.url} class="card-img-top" alt="No Image Currenly" />
-                    <div class="card-body">
-                        <h5 class="card-title"> {NasaDate.title}</h5>
-                        <p class="card-text">   {NasaDate.explanation} </p>
-                        <a href={NasaDate.hdurl} class="btn btn-primary">Go to HD image</a>
-                    </div>
+            <div style={{"margin-bottom" : "20px"}}>
+                <input type="text" id="number" value={userEnteredNumb} onChange={(e) => setUserEnteredNum(e.target.value)} placeholder="Enter Count" />
+                <button disabled={userEnteredNumb ? false : true} type="button" class="btn btn-info" onClick={() => fetchCount()} >Get Images</button>
             </div>
-            <div class="card" style={{"width" : "18rem"}}>
-                <img src={userEnteredDate.url} class="card-img-top" alt="No Image Currenly" />
-                    <div class="card-body">
-                        <h5 class="card-title"> {userEnteredDate.title}</h5>
-                        <p class="card-text">   {userEnteredDate.explanation} </p>
-                        <a href={userEnteredDate.hdurl} class="btn btn-primary">Go to HD image</a>
-                    </div>
-            </div>
-            <div>
-                <input type="text" id="DateID" value={userEnteredNumb} onChange={(e) => setUserEnteredNum(e.target.value)} placeholder="Date in yyyy-mm-dd format" />
-                <button disabled={userEnteredDate ? false : true}type="button" class="btn btn-info" onClick={() => fetchPastImage()} >Get User  Comic</button>
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {apiArray.map((nasa, index) => {
+                    return (
+                        <div className="card col" style={{ "width": "18rem", "margin" : '.5rem' }} key={index}>
+                            <img src={nasa.url} className="card-img-top" alt={nasa.alt} />
+                            <div className="card-body">
+                                <h5 className="card-title">{nasa.title}</h5>
+                                <p className="card-text">{nasa.explanation}</p>
+                                <a href={nasa.hdurl} className="btn btn-primary">See Image</a>
+                            </div>
+                        </div>
+                    )
+                })}
             </div>
         </>
     )
