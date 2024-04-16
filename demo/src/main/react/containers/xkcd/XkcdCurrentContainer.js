@@ -1,20 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
-const XkcdCurrentContainer = () => {
-    const [xkcdCurrent, setXkcdCurrent] = useState({})
-    useEffect(() => {
-        axios.get('/xkcd/current')
-            .then(function (response) {
-                setXkcdCurrent(response.data)
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-    }, [])
+import { useStore } from '../../resources/store.js';
 
+const XkcdCurrentContainer = () => {
+    const xkcdCurrent = useStore((state) => state.xkcdCurrentComic);
 
 
 

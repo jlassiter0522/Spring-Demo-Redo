@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
+import { useStore } from '../../resources/store.js';
 const XkcdPastContainer = () => {
     const [xkcdCurrent, setXkcdCurrent] = useState({})
     const [xkcdPast, setXkcdPast] = useState({})
     const [userDefComicNum, setUserDefComicNum] = useState('')
-    useEffect(() => {
-        axios.get('/xkcd/current')
-            .then(function (response) {
-                setXkcdCurrent(response.data)
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-    }, [])
-
+    const xkcdCurrentStoreVal = useStore((state) => state.xkcdCurrentComic)
+    const updateCurrent = useStore((state) => state.updateCurrent)
+    
     const fetchPastComic = (pastNum) => {
         //default number no matter what.
         // const defaultNum = xkcdCurrent.num ? xkcdCurrent.num : 2500;
