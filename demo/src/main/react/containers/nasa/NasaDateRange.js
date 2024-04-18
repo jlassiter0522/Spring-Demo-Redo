@@ -10,6 +10,7 @@ const NasaDateRange = () => {
     const updateStart = useStore((state) => state.updateStartDate)
     const updateEnd = useStore((state) => state.updateEndDate)
     const fetchRange = useStore((state) =>state.fetchRange)
+    const.log(apiArray)
     return (
 
         <>
