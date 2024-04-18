@@ -1,42 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
-const NasaDateRange = () => {
-    const [userStartDate, setUserStartDate] = useState('')
-    const [userEndDate, setUserEndDate] = useState('')
-    const [apiArray, setApiArray] = useState([])
-    const wholeCode = ""
-    const fetchRange = (() => {
-        const newNum = document.getElementById("startDate").value;
-        const newNum2 = document.getElementById("endDate").value;
-        const apiCall = "/Nasa/multidatenasa?start_date="
-        const number = newNum
-        const end_date_html = "&end_date="
-        const end_date = newNum2
-        const finalCall = apiCall + number + end_date_html + end_date
-        axios.get(finalCall)
-            .then(function (response) {
-                setApiArray(response.data)
-                console.log(response);
-                allCode += "test"
-                console.log("test");
+import { useStore } from '../../resources/store.js';
 
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-    })
+const NasaDateRange = () => {
+    const userStartDate = useStore((state) => state.NasaStartDate)
+    const userEndDate = useStore((state) => state.NasaEndDate)
+    const apiArray =useStore((state) => state.NasaDateRangeImageArray)
+    const updateStart = useStore((state) => state.updateStartDate)
+    const updateEnd = useStore((state) => state.updateEndDate)
+    const fetchRange = useStore((state) =>state.fetchRange)
     return (
 
         <>
             <div style={{"margin-bottom" : "20px"}}>
-                <input type="text" id="startDate" value={userStartDate} onChange={(e) => setUserStartDate(e.target.value)} placeholder="YYYY-MM-DD" />
-                <button disabled={userStartDate ? false : true} type="button" class="btn btn-info" onClick={() => fetchRange()} >Lock in Start Date</button>
+                <input type="text" id="startDate" value={userStartDate} onChange={(e) => updateStart(e.target.value)} placeholder="YYYY-MM-DD" />
             </div>
             <div style={{"margin-bottom" : "20px"}}>
-                <input type="text" id="endDate" value={userEndDate} onChange={(e) => setUserEndDate(e.target.value)} placeholder="YYYY-MM-DD" />
-                <button disabled={userEndDate ? false : true} type="button" class="btn btn-info" onClick={() => fetchRange()} >Lock in End Date</button>
+                <input type="text" id="endDate" value={userEndDate} onChange={(e) => updateEnd(e.target.value)} placeholder="YYYY-MM-DD" />
+                <button type="button" class="btn btn-info" onClick={() => fetchRange(userStartDate, userEndDate)} >Enter Range</button>
             </div>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {apiArray.map((nasa, index) => {

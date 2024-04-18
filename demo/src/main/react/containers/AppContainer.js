@@ -6,9 +6,15 @@ import { useStore } from '../resources/store.js';
 const AppContainer = () => {
   const xkcdCurrentComic = useStore((state) => state.xkcdCurrentComic)
   const fetchCurrentComic = useStore((state) => state.fetchCurrentComic)
+  const nasaCurrentImage = useStore((state) => state.nasaCurrentImage)
+  const fetchCurrentImage = useStore((state) => state.fetchCurrentImage)
   console.log(xkcdCurrentComic)
+  console.log(nasaCurrentImage)
   useEffect(() => {
     fetchCurrentComic()
+  }, [])
+  useEffect(()=> {
+    fetchCurrentImage()
   }, [])
 
 

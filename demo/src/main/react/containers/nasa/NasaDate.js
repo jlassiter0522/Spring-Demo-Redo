@@ -1,35 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
+import { useStore } from '../../resources/store.js';
 const NasaDate = () => {
-    const [NasaDate, setNasaDate] = useState({})
-    const [userEnteredDate, setUserEntered] = useState("")
-    useEffect(() => {
-        axios.get('/Nasa/singlenasaimage')
-            .then(function (response) {
-                setNasaDate(response.data)
-                console.log(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-    }, [])
-    const fetchPastImage = (() => {
-        const apiCall = "/Nasa/singlenasaimage?date="
-        const userDate = userEnteredDate
-        const fullCall = apiCall + userDate
-        axios.get(fullCall)
-            .then(function (response) {
-                setUserEntered(response.data)
-                console.log(response);
-            })
-            .catch(function (error){
-                console.log(error);
-            })
-            
-        document.getElementById('DateID').value = userDate
-    })
+    const NasaDate = useStore((state) => state.nasaCurrentImage);
+    const fetchPastImage = useStore((state) => state.fetchPastImage)
+    const updatePastDate = useStore((state) => state.updatePastDate);
+    const NasaPastImage = useStore((state) => state.nasaPastImage);
+    const nasaPastDate = useStore((state) => state.nasaPastDate);
+    console.log(NasaPastImage)
+    
 
 
 
@@ -45,17 +25,17 @@ const NasaDate = () => {
                     </div>
             </div>
             <div class="card" style={{"width" : "18rem"}}>
-                <img src={userEnteredDate.url} class="card-img-top" alt="No Image Currenly" />
+                <img src={NasaPastImage.url} class="card-img-top" alt="No Image Currenly" />
                     <div class="card-body">
-                        <h5 class="card-title"> {userEnteredDate.title}</h5>
-                        <p class="card-text">   {userEnteredDate.explanation} </p>
-                        <a href={userEnteredDate.hdurl} class="btn btn-primary">Go to HD image</a>
+                        <h5 class="card-title"> {NasaPastImage.title}</h5>
+                        <p class="card-text">   {NasaPastImage.explanation} </p>
+                        <a href={NasaPastImage.hdurl} class="btn btn-primary">Go to HD image</a>
                     </div>
             </div>
             <div>
-                <input type="text" id="DateID" value={userEnteredDate} onChange={(e) => setUserEntered(e.target.value)} placeholder="Date in yyyy-mm-dd format" />
-                <button disabled={userEnteredDate ? false : true}type="button" class="btn btn-info" onClick={() => fetchPastImage()} >Get Image</button>
-            </div>
+                <input type="text" id="DateID" onChange={(e) => updatePastDate(e.target.value)} placeholder="Date in yyyy-mm-dd format" />
+                <button disabled={NasaPastImage ? false : true}type="button" class="btn btn-info" onClick={() => fetchPastImage(nasaPastDate)} >Get Image</button>
+            </div> 
         </>
     )
 }

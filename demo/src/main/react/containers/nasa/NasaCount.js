@@ -1,36 +1,20 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import Nav from '../components/nav/Nav';
+import { useStore } from '../../resources/store.js';
 const NasaCount = () => {
-    const [userEnteredNumb, setUserEnteredNum] = useState('')
-    const [apiArray, setApiArray] = useState([])
-    const wholeCode = ""
-    const fetchCount = (() => {
-        const newNum = document.getElementById("number").value;
-        console.log(userEnteredNumb)
-        const apiCall = "/Nasa/numbernasaimage?count="
-        const allCode = ""
-        const number = newNum
-        const finalCall = apiCall + number
-        axios.get(finalCall)
-            .then(function (response) {
-                setApiArray(response.data)
-                console.log(response);
-                allCode += "test"
-                console.log("test");
+    const apiArray = useStore((state) => state.nasaCountImageArray)
+    const fetchCount = useStore((state) => state.fetchCount)
+    const updateCount = useStore((state) => state.updateNasaCount)
+    const nasaCount = useStore((state) => state.NasaCount)
+    console.log(apiArray)
 
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-    })
     return (
 
         <>
             <div style={{"margin-bottom" : "20px"}}>
-                <input type="text" id="number" value={userEnteredNumb} onChange={(e) => setUserEnteredNum(e.target.value)} placeholder="Enter Count" />
-                <button disabled={userEnteredNumb ? false : true} type="button" class="btn btn-info" onClick={() => fetchCount()} >Get Images</button>
+                <input type="text" id="number" onChange={(e) => updateCount(e.target.value)} placeholder="Enter Count" />
+                <button type="button" class="btn btn-info" onClick={() => fetchCount(nasaCount)} >Get Images</button>
             </div>
             <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 {apiArray.map((nasa, index) => {
